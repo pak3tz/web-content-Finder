@@ -1,0 +1,162 @@
+#!/bin/bash
+#############################################################################
+#By: Jamell Tyson                                                           #
+#Desription: This script is used to find hidden directories and content on  #
+#websites. This uses the external utility dirb (Work out of the box with    #
+#penetration distributions like Kali\Parrot OS.)                            #
+#############################################################################
+#
+echo "  ___  __   __ _  ____  ____  __ _  ____" 
+echo " / __)/  \ (  ( \(_  _)(  __)(  ( \(_  _)"
+echo "( (__(  O )/    /  )(   ) _) /    /  )(  "
+echo " \___)\__/ \_)__) (__) (____)\_)__) (__)" 
+echo "   ____  __  __ _  ____  ____  ____     " 
+echo "  (  __)(  )(  ( \(    \(  __)(  _ \    " 
+echo "   ) _)  )( /    / ) D ( ) _)  )   /    " 
+echo "  (__)  (__)\_)__)(____/(____)(__\_)"
+echo '  ---------by Jamell Tyson----------'
+echo "Please enter a url to scan (http/https):"
+read -r url
+echo "What would like to do? Please select number and press enter."
+echo "0.Base Scan"
+echo "1.Specify your custom USER_AGENT."
+echo "2.Set a cookie for the HTTP request."
+echo "3.Fine tunning of NOT_FOUND (404) detection."
+echo "4.Add a custom header to the HTTP request."
+echo "5.Use case-insensitive search."
+echo '6.Print "Location" header when found.'
+echo "7.Ignore responses with this HTTP code."
+echo "8.Save output to disk."
+echo "9.Use this proxy. (Default port is 1080)"
+echo "10.Proxy Authentication."
+echo "11.Don't search recursively."
+echo "12.Interactive recursion. (Asks for each directory)"
+echo "13.Silent Mode. Don't show tested words. (For dumb terminals)"
+echo "14.Don't force an ending '/' on URLs."
+echo "15.HTTP Authentication."
+echo "16.Show also NOT_FOUND pages."
+echo "17.Don't stop on WARNING messages."
+echo "18.Append each word with this extensions"
+echo "19.Add a miliseconds delay to not cause excessive flood."
+read -r selection
+if [ "$selection" -eq 0 ]
+then
+	dirb "$url"
+
+if [ "$selection" -eq 1 ]
+then
+    echo "Please enter agent string:"
+    read -r agentstring
+	dirb "$url -a $agentstring" 
+
+	if [ "$selection" -eq 2 ]
+	then
+	    echo "Please enter a cookie string:"
+	    read -r cookiestring
+		dirb "$url -c $cookiestring"
+
+	if [ "$selection" -eq 3 ]
+	then
+		dirb "$url -f"
+
+		if [ "$selection" -eq 4 ]
+	then
+		echo "Please enter a header string:"
+		read -r headerstring
+		dirb "$url -H $headerstring"
+
+		if [ "$selection" -eq 5 ]
+	then
+		dirb "$url -i"
+
+		if [ "$selection" -eq 6 ]
+	then
+		dirb "$url -l"
+
+		if [ "$selection" -eq 7 ]
+	then
+		echo "Please enter a nf_code:"
+		read -r nfcode
+		dirb "$url -N $nfcode"
+
+		if [ "$selection" -eq 8 ]
+	then
+		echo "Please enter a file name"
+		read -r filename
+		dirb "$url -o $filename".txt
+
+		if [ "$selection" -eq 9 ]
+	then
+		echo "Please enter a proxy:"
+		read -r proxy
+		echo "Please enter a port:"
+		read -r port
+		dirb "$url -p ${proxy[:$port]}"
+        
+		if [ "$selection" -eq 10 ]
+	then
+		echo "Please enter a proxy username:"
+		read -r proxyusername
+		echo "Please enter a proxy password:"
+		read -r proxypassword
+		dirb "$url  -P $proxyusername:$proxypassword"
+
+		if [ "$selection" -eq 11 ]
+	then
+		dirb "$url -r"
+
+		if [ "$selection" -eq 12 ]
+	then
+		dirb "$url -R"
+
+		if [ "$selection" -eq 13 ]
+	then
+		dirb "$url -s"
+
+		if [ "$selection" -eq 14 ]
+	then
+		dirb "$url -t"
+
+		if [ "$selection" -eq 15 ]
+	then
+		dirb "$url -u"
+
+		if [ "$selection" -eq 16 ]
+	then
+		dirb "$url -v"
+
+		if [ "$selection" -eq 17 ]
+	then
+		dirb "$url -w"
+
+		if [ "$selection" -eq 18 ]
+	then
+		dirb "$url -x"
+
+		if [ "$selection" -eq 19 ]
+	then
+		echo "Please enter the number of miliseconds:"
+		read -r milisecs
+		dirb "$url -z $milisecs"
+
+
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
+		fi
