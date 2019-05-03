@@ -1,6 +1,6 @@
 #!/bin/bash
 #############################################################################
-#By: Jamell Tyson                                                           #
+#Author: Jamell Tyson                                                           #
 #Desription: This script is used to find hidden directories and content on  #
 #websites. This uses the external utility dirb (Work out of the box with    #
 #penetration distributions like Kali\Parrot OS.)                            #
